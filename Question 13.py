@@ -1,20 +1,25 @@
 import numpy as np
-from scipy.misc import derivative
+from scipy.optimize._numdiff import approx_derivative
 from scipy.integrate import quad
 
 # Define the mathematical function
 def f(x):
     return x**3 + 2*x**2 + x
 
-# Point at which differentiation is required
+# Numerical differentiation
 x = 2
 
-# Numerical differentiation
-first_derivative = derivative(f, x, dx=1e-6)
+def function_for_derivative(x_array):
+    return np.array([f(x_array[0])])
+
+derivative_value = approx_derivative(
+    function_for_derivative,
+    np.array([x])
+)[0, 0]
 
 print("Function: f(x) = x^3 + 2x^2 + x")
-print("Point x =", x)
-print("Numerical derivative at x =", first_derivative)
+print("Numerical derivative at x =", x)
+print("Derivative =", derivative_value)
 
 # Numerical integration
 lower_limit = 0
