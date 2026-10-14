@@ -16,7 +16,7 @@ response = requests.get(
 response.raise_for_status()
 
 # Parse HTML content
-soup = BeautifulSoup(response.text, "html.parser"https://news.ycombinator.com/)
+soup = BeautifulSoup(response.text, "html.parser)
 
 # Extract headlines and hyperlinks
 headlines = soup.find_all("h2")
